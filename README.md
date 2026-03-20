@@ -66,7 +66,7 @@ npm run build
 ### 管理 Prefix
 
 1. 點左側欄「+」按鈕新增 Prefix
-2. 填入名稱（例如 `hkbdb:`）與 URI（例如 `<http://hkbdb.lib.cuhk.edu.hk/v1#>`）
+2. 填入名稱（例如 `ex:`）與 URI（例如 `<http://example.org/>`）
 3. 勾選要套用的 Prefix，格式化時會自動插入 query 頂端
 4. 點「+」（Preset 旁）可建立多個 Preset，方便切換不同專案的 Prefix 組合
 
