@@ -14,7 +14,10 @@
       "output": "dist"
     },
     "win": {
-      "target": "nsis",
+      "target": [
+        { "target": "portable", "arch": ["x64"] },
+        { "target": "zip", "arch": ["x64"] }
+      ],
       "icon": "assets/icon.ico"
     },
     "mac": {
@@ -25,15 +28,8 @@
       "target": "AppImage",
       "icon": "assets/icon.png"
     },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "allowToChangeInstallationDirectory": false,
-      "installerIcon": "assets/icon.ico",
-      "uninstallerIcon": "assets/icon.ico",
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "SPARQL Formatter"
+    "portable": {
+      "artifactName": "SPARQL-Formatter-${version}-portable.exe"
     },
     "files": [
       "main.js",
