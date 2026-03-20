@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPARQL Formatter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+
+    <!-- 左側欄 -->
+    <aside class="sidebar">
+
+      <!-- Prefix 管理 -->
+      <section class="sidebar-section">
+        <div class="section-header">
+          <span>Prefixes</span>
+          <button id="btn-add-prefix" class="btn-icon" title="新增 Prefix">+</button>
+        </div>
+
+        <!-- Preset 選擇 -->
+        <div class="preset-row">
+          <select id="preset-select" title="切換 Preset"></select>
+          <button id="btn-add-preset" class="btn-icon" title="新增 Preset">+</button>
+          <button id="btn-del-preset" class="btn-icon btn-danger" title="刪除 Preset">✕</button>
+        </div>
+
+        <!-- Prefix 清單 -->
+        <ul id="prefix-list" class="prefix-list"></ul>
+      </section>
+
+      <hr />
+
+      <!-- Fuseki 整合 -->
+      <section class="sidebar-section">
+        <div class="section-header"><span>Fuseki</span></div>
+        <input id="fuseki-endpoint" type="text" placeholder="http://localhost:3030/ds/query" class="input-full" />
+        <button id="btn-run-fuseki" class="btn btn-primary btn-full">執行查詢</button>
+        <div id="fuseki-status" class="status-text"></div>
+      </section>
+
+    </aside>
+
+    <!-- 主區域 -->
+    <main class="main-area">
+      <div class="editor-pane">
+        <div class="pane-header">
+          <span>輸入 Query</span>
+          <button id="btn-clear" class="btn btn-sm">清除</button>
+        </div>
+        <textarea id="input-query" placeholder="貼入 SPARQL query..."></textarea>
+      </div>
+
+      <div class="editor-pane">
+        <div class="pane-header">
+          <span>格式化結果</span>
+          <button id="btn-copy" class="btn btn-sm">複製</button>
+        </div>
+        <pre id="output-query"></pre>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- 底部工具列 -->
+  <footer class="toolbar">
+    <button id="btn-format" class="btn btn-primary">格式化</button>
+    <button id="btn-save" class="btn">存檔</button>
+    <button id="btn-history" class="btn">歷史記錄</button>
+    <span id="status-msg" class="status-msg"></span>
+  </footer>
+
+  <!-- 歷史記錄 Panel -->
+  <div id="history-panel" class="panel hidden">
+    <div class="panel-header">
+      <span>查詢歷史</span>
+      <button id="btn-close-history" class="btn-icon">✕</button>
+    </div>
+    <ul id="history-list" class="history-list"></ul>
+  </div>
+
+  <!-- 新增 Prefix 對話框 -->
+  <div id="prefix-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <div class="dialog-header">新增 Prefix</div>
+      <label>Prefix 名稱（例如 hkbdb:）</label>
+      <input id="new-prefix-name" type="text" placeholder="hkbdb:" class="input-full" />
+      <label>URI（例如 &lt;http://...&gt;）</label>
+      <input id="new-prefix-uri" type="text" placeholder="<http://hkbdb.lib.cuhk.edu.hk/v1#>" class="input-full" />
+      <div class="dialog-actions">
+        <button id="btn-prefix-confirm" class="btn btn-primary">新增</button>
+        <button id="btn-prefix-cancel" class="btn">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新增 Preset 對話框 -->
+  <div id="preset-dialog" class="dialog-overlay hidden">
+    <div class="dialog">
+      <div class="dialog-header">新增 Preset</div>
+      <label>Preset 名稱</label>
+      <input id="new-preset-name" type="text" placeholder="例如：HKBDB 專案" class="input-full" />
+      <div class="dialog-actions">
+        <button id="btn-preset-confirm" class="btn btn-primary">新增</button>
+        <button id="btn-preset-cancel" class="btn">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fuseki 結果 Panel -->
+  <div id="fuseki-panel" class="panel hidden">
+    <div class="panel-header">
+      <span>Fuseki 查詢結果</span>
+      <button id="btn-close-fuseki" class="btn-icon">✕</button>
+    </div>
+    <pre id="fuseki-result"></pre>
+  </div>
+
+  <script src="prefix-manager.js"></script>
+  <script src="history.js"></script>
+  <script src="fuseki.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
